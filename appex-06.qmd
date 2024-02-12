@@ -1,0 +1,47 @@
+---
+title: "Appex 06"
+format: 
+  html:
+    self-contained: true
+editor: visual
+---
+
+## 
+
+```{r}
+#| label: load-packages
+
+library(tidyverse)
+
+```
+
+Fill in the dataset below with the values from your sample:
+
+```{r}
+#| label: create-data
+circle_data <- data.frame(
+  frequency_score = c(1, 2, 3, ...) # replace these values with your 20 observations, with commas in between
+)
+square_data <- data.frame(
+  frequency_score = c(1, 2, 3, ...) # replace these values with your 20 observations, with commas in between
+)
+
+bead_data <- bind_rows(circle_data, square_data) |>
+  mutate(group = rep(c("circle", "square"), each = 20))
+```
+
+```{r}
+#| label: fit-model
+
+mod <- lm(---- ~ -----, data = bead_data)
+mod
+```
+
+```{r}
+#| label: confidence-interval
+
+summary(mod)
+
+-------(mod)
+
+```
