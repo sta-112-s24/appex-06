@@ -30,12 +30,34 @@ bead_data <- bind_rows(circle_data, square_data) |>
   mutate(group = rep(c("circle", "square"), each = 20))
 ```
 
+Visualize your data
+
+```{r}
+#| label: visualize
+
+mean_table <- bead_data |>
+  group_by(group) |>
+  summarize(m = mean(frequency_score))
+
+ggplot(bead_data, aes(x = group, y = frequency_score)) + 
+  geom_point(alpha = 0.5) + 
+  geom_point(data = mean_table,
+             shape = "square", 
+             size = 3,
+             color = "orange",
+             aes(x = group, y = m)) +
+  labs(x = "Bead shape", y = "Frequency score")
+```
+
+Fit your simple linear regression model 
 ```{r}
 #| label: fit-model
 
 mod <- lm(---- ~ -----, data = bead_data)
 mod
 ```
+
+Calculate the confidence interval for the slope
 
 ```{r}
 #| label: confidence-interval
